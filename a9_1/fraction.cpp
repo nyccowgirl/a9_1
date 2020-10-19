@@ -133,15 +133,17 @@ void Fraction::simplify() {
     int max;
     bool neg = false;
     
-    // To address negative fractions
+    // To address negative or zero fractions
     if (numerator < 0) {
         neg = !neg;
-        numerator = -numerator;
+        numerator *= -1;
+    } else if (numerator == 0) {
+        denominator = 1;
     }
     
     if (denominator < 0) {
         neg = !neg;
-        denominator = -denominator;
+        denominator *= -1;
     }
     
     // To reduce by common divisors
@@ -162,7 +164,7 @@ void Fraction::simplify() {
     
     // To put back as negative, if initial fraction was net negative
     if (neg) {
-        numerator = -numerator;
+        numerator *= -1;
     }
 }
 
