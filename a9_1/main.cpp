@@ -87,12 +87,45 @@ int main(int argc, const char * argv[]) {
 /*
  
  The result starts off at 0/1
- The product of 9/8 and 2/3 is 18/24
+ The product of 9/8 and 2/3 is 3/4
  The quotient of 9/8 and 2/3 is 27/16
  The sum of 9/8 and 2/3 is 43/24
  The difference of 9/8 and 2/3 is 11/24
  The two Fractions are not equal.
- The product of 12/8 and 202/303 is 2424/2424
+ The product of 3/2 and 2/3 is 1/1
+ Program ended with exit code: 0
+ 
+ Testing out simplify() with f3(-12, 8):
+ 
+ The result starts off at 0/1
+ The product of 9/8 and 2/3 is 3/4
+ The quotient of 9/8 and 2/3 is 27/16
+ The sum of 9/8 and 2/3 is 43/24
+ The difference of 9/8 and 2/3 is 11/24
+ The two Fractions are not equal.
+ The product of -3/2 and 2/3 is -1/1
+ Program ended with exit code: 0
+ 
+ Testing out simplify() with f3(12, -8):
+ 
+ The result starts off at 0/1
+ The product of 9/8 and 2/3 is 3/4
+ The quotient of 9/8 and 2/3 is 27/16
+ The sum of 9/8 and 2/3 is 43/24
+ The difference of 9/8 and 2/3 is 11/24
+ The two Fractions are not equal.
+ The product of -3/2 and 2/3 is -1/1
+ Program ended with exit code: 0
+ 
+ Testing out simplify() with f3(-12, -8):
+ 
+ The result starts off at 0/1
+ The product of 9/8 and 2/3 is 3/4
+ The quotient of 9/8 and 2/3 is 27/16
+ The sum of 9/8 and 2/3 is 43/24
+ The difference of 9/8 and 2/3 is 11/24
+ The two Fractions are not equal.
+ The product of 3/2 and 2/3 is 1/1
  Program ended with exit code: 0
  
  */

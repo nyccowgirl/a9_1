@@ -16,7 +16,7 @@
 */
 
 #include <iostream>
-//#include <cmath>
+#include <cassert>
 #include "fraction.hpp"
 using namespace std;
 
@@ -25,7 +25,7 @@ using namespace std;
  
  Class Invariant: a Fraction object has 2 int data members: numerator, which stores the
  numerator, and denominator, which stores the denominator that cannot be 0. However, no
- effort is made to prevent the client from providing an invalid or negative fractions.
+ effort is made to prevent the client from providing an invalid fraction.
     
 */
 
@@ -41,11 +41,10 @@ Fraction::Fraction() {
 
 
 Fraction::Fraction(int inNum, int inDenom) {
-//    Fraction temp;
-    
+    assert(inDenom != 0);
     numerator = inNum;
     denominator = inDenom;
-//    simplify();
+    simplify();
 }
 
 
@@ -59,7 +58,7 @@ Fraction Fraction::addedTo(const Fraction &frac) const {
     
     sum = (numerator * frac.denominator) + (frac.numerator * denominator);
     temp = Fraction(sum, (denominator * frac.denominator));
-//    temp.simplify();
+    temp.simplify();
     return temp;
 }
 
@@ -74,7 +73,7 @@ Fraction Fraction::subtract(const Fraction &frac) const {
     
     diff = (numerator * frac.denominator) - (frac.numerator * denominator);
     temp = Fraction(diff, (denominator * frac.denominator));
-//    temp.simplify();
+    temp.simplify();
     return temp;
 }
 
@@ -87,7 +86,7 @@ Fraction Fraction::multipliedBy(const Fraction &frac) const {
     Fraction temp;
     
     temp = Fraction((numerator * frac.numerator), (denominator * frac.denominator));
-//    temp.simplify();
+    temp.simplify();
     return temp;
 }
 
@@ -100,7 +99,7 @@ Fraction Fraction::dividedBy(const Fraction &frac) const {
     Fraction temp;
     
     temp = Fraction((numerator * frac.denominator), (denominator * frac.numerator));
-//    temp.simplify();
+    temp.simplify();
     return temp;
 }
 
@@ -127,50 +126,43 @@ void Fraction::print() const {
 
 
 
-// This private member function reduces, and returns by reference, the parameter "frac". It
-// assumes the parameter is a non-negative fraction.
+// This private member function reduces, and replaces numerator and denominator for
+// simplified fraction
 
-//void Fraction::simplify() {
-    // to code
-
-//int exponent, cd;
-//
-//if (numerator % 2 == 0 && denominator % 2 == 0) {
-//    numerator /= 2;
-//    denominator /= 2;
-//    exponent++;
-//} else if (numerator % 2 == 0) {
-//    numerator /= 2;
-//} else if (denominator % 2 == 0) {
-//    denominator /= 2;
-//} else {
-//    if (numerator < denominator) {
-//        numerator = (denominator - numerator) / 2;
-//    } else if (numerator > denominator) {
-//        denominator = (numerator - denominator) / 2;
-//    } else {
-//        cd = pow(2, exponent) * numerator;
-//    }
-//}
-//
-//numerator /= cd;
-//denominator /= cd;
-
-//    for (int i = denominator * numerator; i > 1; i--) {
-//                   if ((denominator % i == 0) && (numerator % i == 0)) {
-//               denominator /= i;
-//                   numerator /= i;
-//           }
-
-
-//void fraction::reduce()
-//    for(int i = numer * denom; i > 1; i--)
-//    {
-//        if((numer % i) == 0 && (denom % i) == 0)
-//        {
-//            numer = numer / i;
-//            denom = denom / i;
-//        }
-//    }
-//}
+void Fraction::simplify() {
+    int max;
+    bool neg = false;
+    
+    // To address negative fractions
+    if (numerator < 0) {
+        neg = !neg;
+        numerator = -numerator;
+    }
+    
+    if (denominator < 0) {
+        neg = !neg;
+        denominator = -denominator;
+    }
+    
+    // To reduce by common divisors
+    if (numerator < denominator) {
+        max = numerator;
+    } else if (denominator < numerator) {
+        max = denominator;
+    } else {
+        numerator = denominator = max = 1;
+    }
+    
+    for (int i = max; i > 1; i--) {
+        if ((numerator % i == 0) && (denominator % i == 0)) {
+            numerator /= i;
+            denominator /= i;
+        }
+    }
+    
+    // To put back as negative, if initial fraction was net negative
+    if (neg) {
+        numerator = -numerator;
+    }
+}
 
