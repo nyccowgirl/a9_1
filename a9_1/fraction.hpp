@@ -29,7 +29,7 @@
 
  Fraction(int inNum, int inDenom);
   post: The calling object has been created and initialized so that the numerator is inNum,
-        and the denominator is inDenom.
+        and the denominator is inDenom. If inDenom is 0, program is aborted.
  
  Fraction addedTo(Fraction &frac);
   post: Returns the Fraction determined by adding the calling object with the paramenter "frac".
